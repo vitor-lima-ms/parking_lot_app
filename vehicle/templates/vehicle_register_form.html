@@ -1,0 +1,44 @@
+{% extends "core_index.html" %}
+
+{% block title %} | Cadastrar automóvel{% endblock title %}
+
+{% block css %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static "vehicle_register_form.css" %}">
+{% endblock css %}
+
+{% block content %}
+    {% if error %}
+        {{ error }}
+    {% else %}
+        <h2>Cadastrar automóvel</h2>
+        <form action="{% url "vehicle:saving_vehicle" %}" method="post">
+            {% csrf_token %}
+            <table>
+                <tbody>
+                    <tr>
+                        <td>
+                            Modelo
+                        </td>
+                        <td>
+                            {{ form.model }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Placa
+                        </td>
+                        <td>
+                            {{ form.vehicle_plate }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <input type="submit" value="Enviar">
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </form>
+    {% endif %}
+{% endblock content %}

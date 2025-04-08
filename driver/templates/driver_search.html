@@ -1,0 +1,23 @@
+{% extends "core_index.html" %}
+
+{% block title %} | Busca de motoristas{% endblock title %}
+
+{% block css %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static "driver_search.css" %}">
+{% endblock css %}
+
+{% block content %}
+    <h2>Resultado da busca - Motoristas</h2>
+    <section id="first_sec">
+        {% for driver in drivers %}
+            <div id="driver_search">
+                <span><b>Nome:</b> {{ driver.driver_name }}</span><br>
+                <span><b>Mensalista:</b> {{ driver.monthly }}</span><br>
+                <span><b>CNH:</b> {{ driver.cnh }}</span><br>
+                <span><b>CPF:</b> {{ driver.cpf }}</span><br>
+                <br>
+            </div>
+        {% endfor %}
+    </section>
+{% endblock content %}

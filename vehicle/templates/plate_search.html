@@ -1,0 +1,19 @@
+{% extends "core_index.html" %}
+
+{% block title %} | Busca de automóvel{% endblock title %}
+
+{% block css %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static "plate_search.css" %}">
+{% endblock css %}
+
+{% block content %}
+    <h2>Resultado da busca - Automóveis</h2>
+    <section id="first_sec">
+        <div id="plate_search">
+            <span><b>Modelo:</b> {{ vehicle.model }}</span><br>
+            <span><b>Placa:</b> {{ vehicle.vehicle_plate }}</span><br>
+            <br>
+        </div>        
+    </section>
+{% endblock content %}

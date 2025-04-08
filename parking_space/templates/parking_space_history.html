@@ -1,0 +1,24 @@
+{% extends "core_index.html" %}
+
+{% block title %} | Histórico de ocupação - {{ parking_space }}{% endblock title %}
+
+{% block css %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static "parking_space_history.css" %}">
+{% endblock css %}
+
+{% block content %}
+    <h2>Histórico de ocupação - {{ parking_space }}</h2>
+    <section id="first_sec">
+        {% for vehicle in parking_space.history %}
+            <div id="parking_history">
+                <b>Automóvel:</b> {{ vehicle.model }}<br>
+                <b>Motorista:</b> {{ vehicle.driver }}<br>
+                <b>Entrada:</b> {{ vehicle.checkin_datetime }}<br>
+                <b>Saída:</b> {{ vehicle.checkout_datetime }}<br>
+                <b>Tempo total:</b> {{ vehicle.total_time }}<br>
+                <br>
+            </div>            
+        {% endfor %}
+    </section>
+{% endblock content %}

@@ -1,0 +1,33 @@
+{% extends "core_index.html" %}
+
+{% block title %} | Automóveis cadastrados{% endblock title %}
+
+{% block css %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static "registered_vehicles.css" %}">
+{% endblock css %}
+
+{% block content %}
+    <section id="first_sec">
+        <h2>Automóveis cadastrados</h2>
+        <form id="search_form" action="{% url "vehicle:plate_search" %}" method="post">
+            {% csrf_token %}
+            <b>Placa do veículo:</b> {{ form.plate_search }}
+            <input type="submit" value="Buscar">
+            <br>
+            <br>
+        </form>
+    </section>
+    <section id="second_sec">
+        {% for vehicle in all_registered_vehicles %}
+            <div id="registered_vehicles">
+                <span><b>Modelo:</b> {{ vehicle.model }}</span><br>
+                <span><b>Placa:</b> {{ vehicle.vehicle_plate }}</span><br>
+                <form id="delete_form" action="{% url "vehicle:delete_vehicle" vehicle.id %}" method="post">
+                    {% csrf_token %}
+                    <input type="submit" value="Deletar">
+                </form>
+            </div>
+        {% endfor %}
+    </section>
+{% endblock content %}

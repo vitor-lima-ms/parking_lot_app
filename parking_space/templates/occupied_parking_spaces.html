@@ -1,0 +1,23 @@
+{% extends "core_index.html" %}
+
+{% block title %} | Vagas ocupadas{% endblock title %}
+
+{% block css %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static "occupied_parking_spaces.css" %}">
+{% endblock css %}
+
+{% block content %}
+    <h2>Vagas ocupadas</h2>
+    <section id="first_sec">
+        {% for parking in occupied_parking_spaces %}
+            <div id="parking_spaces">
+                <span><b>Vaga:</b> {{ parking.id }}</span><br>
+                <span><b>Veículo:</b> {{ parking.occupied_by }}</span><br>
+                <span><b>Horário de entrada:</b> {{ parking.occupied_by.checkin_datetime }}</span><br>
+                <a id="finish" href="{% url "core:pre_finish" parking.id %}">Finalizar</a><br>
+                <br>
+            </div>
+        {% endfor %}
+    </section>
+{% endblock content %}

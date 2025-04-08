@@ -1,0 +1,122 @@
+{% extends "core_index.html" %}
+
+{% block title %} | Cadastrar motorista{% endblock title %}
+
+{% block css %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static "driver_register_form.css" %}">
+{% endblock css %}
+
+{% block content %}
+    <h2>Cadastrar motorista</h2>
+    {% if register_error %}
+        {{ register_error }}
+    {% elif cpf_error %}
+        {{ cpf_error }}
+        <form action="{% url "driver:saving_driver" %}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <table>
+                <tbody>
+                    <tr>
+                        <td>
+                            Nome
+                        </td>
+                        <td>
+                            {{ form.driver_name }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Mensalista
+                        </td>
+                        <td>
+                            {{ form.monthly }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            CNH
+                        </td>
+                        <td>
+                            {{ form.cnh }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            CPF
+                        </td>
+                        <td>
+                            {{ form.cpf }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Documento
+                        </td>
+                        <td>
+                            {{ form.file_upload }}
+                        </td>
+                    </tr>
+                    <tr colspan="2">
+                        <td>
+                            <input type="submit" value="Enviar">
+                        </td>                        
+                    </tr>                    
+                </tbody>
+            </table>
+        </form>
+    {% else %}
+        <form action="{% url "driver:saving_driver" %}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <table>
+                <tbody>
+                    <tr>
+                        <td>
+                            Nome
+                        </td>
+                        <td>
+                            {{ form.driver_name }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Mensalista
+                        </td>
+                        <td>
+                            {{ form.monthly }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            CNH
+                        </td>
+                        <td>
+                            {{ form.cnh }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            CPF
+                        </td>
+                        <td>
+                            {{ form.cpf }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Documento
+                        </td>
+                        <td>
+                            {{ form.file_upload }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <input type="submit" value="Enviar">
+                        </td>
+                    </tr>                    
+                </tbody>
+            </table>
+        </form>                     
+    {% endif %}
+{% endblock content %}

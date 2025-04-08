@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estacionamento{% block title %}{% endblock title %}</title>
+    <link rel="stylesheet" href="{% static "header_nav.css" %}">
+    {% block css %}
+        <link rel="stylesheet" href="{% static "core_index.css" %}">
+    {% endblock css %}
+</head>
+<body>
+    <header>
+        <h1>Estacionamento do Bosque</h1>
+        {% if user.is_authenticated %}
+            <h3><a id="login_link" href="{% url "user_auth:logout_user" %}">Logout</a></h3>
+        {% else %}
+            <h3><a id="logout_link" href="{% url "user_auth:login_user" %}">Login</a></h3>
+        {% endif %}
+        {% comment %} In other cases, this should also be placed in the else. But since I want to allow new users to be created only if someone is logged in, since this is a parking control system (only employees should be able to register other users) {% endcomment %}
+        <h3><a id="register_link" href="{% url "user_auth:register_user" %}">Registrar usuário</a></h3>
+    </header>    
+    <nav>
+        {% if user.is_authenticated %}
+            <a class="nav_link" href="{% url "driver:driver_register_form" %}">Cadastro de motoristas</a>
+        {% endif %}
+        <a class="nav_link" href="{% url "driver:registered_drivers" %}">Motoristas cadastrados</a>
+        {% if user.is_authenticated %}
+            <a class="nav_link" href="{% url "vehicle:vehicle_register_form" %}">Cadastro de automóveis</a>
+        {% endif %}
+        <a class="nav_link" href="{% url "vehicle:registered_vehicle" %}">Automóveis cadastrados</a>
+        <a class="nav_link" href="{% url "core:index" %}">Vagas disponíveis</a>
+        <a class="nav_link" href="{% url "parking_space:occupied_parking_spaces" %}">Vagas ocupadas</a>
+        {% if user.is_authenticated %}
+            <a class="nav_link" href="{% url "parking_space:parking_assignment_form" %}">Cadastrar entrada</a>
+            <a class="nav_link" href="{% url "parking_space:parking_creation_form" %}">Criar vagas</a>
+        {% endif %}
+    </nav>
+    <main>
+        {% block content %}
+            <section id="first_sec">
+                {% if messages %}
+                    {% for message in messages %}
+                        <p>{{ message }}</p>
+                    {% endfor %}
+                {% endif %}
+                <h2 class="sec_title">Vagas disponíveis</h2>
+                <div id="unoccupied_parking">
+                    {% for parking_space in parking_spaces %}
+                        <a class="parking_link" href="{% url "parking_space:parking_space_history" parking_space.id %}">{{ parking_space }}</a>
+                    {% endfor %}
+                </div>            
+            </section>
+            <section id="second_sec">
+                <h2 class="sec_title">Buscar automóvel</h2>
+                <div id="form">
+                    <form action="{% url "parking_space:parking_space_history_plate_search" %}" method="post">
+                        {% csrf_token %}
+                        <b>Placa do veículo:</b> {{ form.plate_search }}
+                        <input id="button" type="submit" value="Buscar">
+                    </form>
+                </div>
+            </section>            
+        {% endblock content %}
+    </main> 
+</body>
+</html>

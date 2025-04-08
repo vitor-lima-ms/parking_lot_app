@@ -1,0 +1,34 @@
+{% extends "core_index.html" %}
+
+{% block title %} | Resumo{% endblock title %}
+
+{% block css %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static "core_pre_finish.css" %}">
+{% endblock css %}
+
+{% block content %}
+    <h2>Resumo</h2>
+    <section id="first_sec">
+        <div id="parking_spaces">        
+            {% if monthly %}
+                <span><b>Vaga:</b> {{ parking_space }}</span><br>
+                <span><b>Horário de entrada:</b> {{ checkin_datetime }}</span><br>
+                <span><b>Horário de saída:</b> {{ current_datetime }}</span><br>
+                <span>{{ time_delta }}</span><br>
+                <br>
+            {% else %}
+                <span><b>Vaga:</b> {{ parking_space }}</span><br>
+                <span><b>Horário de entrada:</b> {{ checkin_datetime }}</span><br>
+                <span><b>Horário de saída:</b> {{ current_datetime }}</span><br>
+                <span>{{ time_delta }}</span><br>
+                <span><b>Total:</b> R$ {{ price }}</span><br>
+                <br>
+            {% endif %}
+            <form action="{% url "core:finish" parking_space.id parking_space.occupied_by.id %}" method="post">
+                {% csrf_token %}
+                <input type="submit" value="Confirmar pagamento">
+            </form>
+        </div>
+    </section>    
+{% endblock content %}

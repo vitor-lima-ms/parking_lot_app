@@ -1,0 +1,40 @@
+{% extends "core_index.html" %}
+
+{% block title %} | Motoristas cadastrados{% endblock title %}
+
+{% block css %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static "registered_drivers.css" %}">
+{% endblock css %}
+
+{% block content %}
+    <section id="first_sec">
+        <h2>Motoristas cadastrados</h2>
+        <form id="search_form" action="{% url "driver:driver_search" %}" method="post">
+            {% csrf_token %}
+            <b>Nome do motorista:</b> {{ form.name_search }}
+            <input type="submit" value="Buscar">
+            <br>
+            <br>
+        </form>
+    </section>
+    <section id="second_sec">
+        {% for driver in all_registered_drivers %}
+            <div id="registered_drivers">
+                <span><b>Nome:</b> {{ driver.driver_name }}</span><br>
+                <span><b>Mensalista:</b> {{ driver.monthly }}</span><br>
+                <span><b>CNH:</b> {{ driver.cnh }}</span><br>
+                <span><b>CPF:</b> {{ driver.cpf }}</span><br>
+                {% if driver.file_upload %}
+                    <span><a id="doc" href="{{ driver.file_upload.url }}" target="_blank"><b>Documento</b></a></span><br>
+                {% endif %}
+                <form id="delete_form" action="{% url "driver:delete_drivers" driver.cpf %}" method="post">
+                    {% csrf_token %}
+                    <input type="submit" value="Deletar">
+                </form>
+                <br>
+                <br>
+            </div>
+        {% endfor %}
+    </section>
+{% endblock content %}

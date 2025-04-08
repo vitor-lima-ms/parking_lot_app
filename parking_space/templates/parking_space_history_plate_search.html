@@ -1,0 +1,25 @@
+{% extends "core_index.html" %}
+
+{% block title %} | Histórico do automóvel{% endblock title %}
+
+{% block css %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static "parking_space_history_plate_search.css" %}">
+{% endblock css %}
+
+{% block content %}
+    <h2>Resultado da busca - Automóveis</h2>
+    <section id="first_sec">
+            {% for vehicle in search_result %}
+                <div id="plate_search">
+                    <span><b>Vaga:</b> {{ vehicle.parking_place }}</span><br>
+                    <span><b>Automóvel:</b> {{ vehicle.model }}</span><br>
+                    <span><b>Motorista:</b> {{ vehicle.driver }}</span><br>
+                    <span><b>Entrada:</b> {{ vehicle.checkin_datetime }}</span><br>
+                    <span><b>Saída:</b> {{ vehicle.checkout_datetime }}</span><br>
+                    <span><b>Tempo total:</b> {{ vehicle.total_time }}</span><br>
+                    <br>
+                </div>
+            {% endfor %}  
+    </section>
+{% endblock content %}

@@ -1,0 +1,56 @@
+{% extends "core_index.html" %}
+
+{% block title %} | Cadastrar entrada{% endblock title %}
+
+{% block css %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static "parking_assignment_form.css" %}">
+{% endblock css %}
+
+{% block content %}
+    <h2>Cadastrar entrada</h2>
+    <form action="{% url "parking_space:saving_parking_place" %}" method="post">
+        {% csrf_token %}
+        <table>
+            <tbody>
+                <tr>
+                    <td>
+                        Vaga
+                    </td>
+                    <td>
+                        {{ form.parking_places }}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Ocupada
+                    </td>
+                    <td>
+                        {{ form.occupied }}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Veículo
+                    </td>
+                    <td>
+                        {{ form.occupied_by }}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Motorista
+                    </td>
+                    <td>
+                        {{ form.driver }}
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <input type="submit" value="Cadastrar">
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </form>
+{% endblock content %}

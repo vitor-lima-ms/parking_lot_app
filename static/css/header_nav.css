@@ -1,0 +1,63 @@
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: #392F5A;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: #FFF8F0;
+}
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 0.5em;
+    background-color: #FF8811;
+}
+#login_link {
+    color: #392F5A;
+    text-decoration: none;
+    font-weight: bold;
+}
+#login_link:hover {
+    text-shadow: 0em 0.25em 0.125em rgb(0, 0, 0, 0.25);
+    transition: ease-in-out 0.25s;
+}
+#logout_link {
+    color: #392F5A;
+    text-decoration: none;
+    font-weight: bold;
+}
+#logout_link:hover {
+    text-shadow: 0em 0.25em 0.125em rgb(0, 0, 0, 0.25);
+    transition: ease-in-out 0.25s;
+}
+#register_link {
+    color: #392F5A;
+    text-decoration: none;
+    font-weight: bold;
+}
+#register_link:hover {
+    text-shadow: 0em 0.25em 0.125em rgb(0, 0, 0, 0.25);
+    transition: ease-in-out 0.25s;
+}
+h1 {
+    margin: 0;
+    color: #392F5A;
+}
+nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 0.5em;
+    background-color: #F4D06F;
+    box-shadow: 0em 0.25em 0.125em rgb(0, 0, 0, 0.25);
+}
+.nav_link {
+    color: #392F5A;
+    text-decoration: none;
+    font-weight: bold;
+}
+.nav_link:hover {
+    text-shadow: 0em 0.25em 0.125em rgb(0, 0, 0, 0.25);
+    transition: ease-in-out 0.25s;
+}

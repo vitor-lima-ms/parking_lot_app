@@ -1,0 +1,22 @@
+h2 {
+    text-align: center;
+    text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.5);
+}
+#first_sec {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#plate_search {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 320px;
+    margin: 16px 16px 16px 16px;
+    padding: 8px;
+    background-color: #FF8811;
+    font-size: large;
+    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.5);
+    border-radius: 8px;
+    color: #392F5A;
+}

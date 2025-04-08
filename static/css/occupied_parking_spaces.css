@@ -1,0 +1,31 @@
+h2 {
+    text-align: center;
+    text-shadow: 0.25em 0.25em 0.25em rgba(0, 0, 0, 0.5);
+}
+#first_sec {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+#parking_spaces {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5em;
+    margin: 1em;
+    background-color: #FF8811;
+    font-size: large;
+    box-shadow: 0.25em 0.25em 0.25em rgba(0, 0, 0, 0.5);
+    border-radius: 0.5em;
+    color: #392F5A;
+}
+#finish {
+    color: #392F5A;
+    text-decoration: none;
+    font-weight: bold;
+}
+#finish:hover {
+    color: #FFF8F0;
+}
